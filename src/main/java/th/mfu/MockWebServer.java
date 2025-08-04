@@ -34,7 +34,6 @@ public class MockWebServer implements Runnable {
                     String response = "<html><body>Hello, Web! on Port " + port + "</body></html>";
                     out.println("HTTP/1.1 200 OK");
                     out.println("Content-Type: text/html");
-                    out.println();
                     out.println(response);
                 } catch (IOException e) {
                     e.printStackTrace();
