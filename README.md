@@ -20,7 +20,10 @@ The `MockWebServer` in package `th.mfu` serves the web server in our system. It 
 4. Finally, close the client socket 
 5. Study the code in `main()` and tell me What it does?
 ```
-The `main()` method in `MockWebClient` connects to a mock web server running on localhost at port 8080 using a socket. It sends a simple HTTP GET request to request the root page and uses `PrintWriter` to send the request and `BufferedReader` to read the server’s response. The response, which includes HTTP headers and an HTML message, is printed to the console. All resources are managed using a try-with-resources block, ensuring the socket and streams are closed automatically after the communication is complete.
+The `main()` method in `MockWebClient` connects to a mock web server running on localhost at port 8080 using a socket.
+It sends a simple HTTP GET request to request the root page and uses `PrintWriter` to send the request and `BufferedReader` to read the server’s response.
+The response, which includes HTTP headers and an HTML message, is printed to the console. All resources are managed using a try-with-resources block,
+ensuring the socket and streams are closed automatically after the communication is complete.
 
 ```
 6. Run the `main()`, point the web browser to `http://localhost:8080` and `http://localhost:8081`
