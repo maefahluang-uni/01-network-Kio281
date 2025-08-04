@@ -20,7 +20,8 @@ The `MockWebServer` in package `th.mfu` serves the web server in our system. It 
 4. Finally, close the client socket 
 5. Study the code in `main()` and tell me What it does?
 ```
- write your through here.
+The `main()` method in `MockWebClient` connects to a mock web server running on localhost at port 8080 using a socket. It sends a simple HTTP GET request to request the root page and uses `PrintWriter` to send the request and `BufferedReader` to read the server’s response. The response, which includes HTTP headers and an HTML message, is printed to the console. All resources are managed using a try-with-resources block, ensuring the socket and streams are closed automatically after the communication is complete.
+
 ```
 6. Run the `main()`, point the web browser to `http://localhost:8080` and `http://localhost:8081`
 It should shows a simple HTML with the word such as  `Hello, Web! on Port 8080`.
@@ -52,7 +53,47 @@ Think about the following,  modify the code to experiment it and put your though
 - What would be the benefit of running many instances?
 
 ```
-  Your thought here...
+1. We can pass the different port number such as
+MockWebServer server = new MockWebServer(9090);
+new Thread(server).start();.
+
+2. We can run more than 2 instances of MockWebserver as below.
+new Thread(new MockWebServer(8080)).start();
+new Thread(new MockWebServer(8081)).start();
+new Thread(new MockWebServer(8082)).start();
+
+3. We can change the content in HTML as below.
+String response = """
+<html>
+  <body>
+    <h1>Hello, Web! on Port """ + port + """</h1>
+    <p>Welcome to our test server.</p>
+    <table border='1'>
+      <tr><th>Name</th><th>Value</th></tr>
+      <tr><td>Port</td><td>""" + port + """</td></tr>
+    </table>
+    <img src="https://via.placeholder.com/150" alt="Placeholder Image"/>
+  </body>
+</html>
+""";
+
+4. Running multiple MockWebServer instances gives us:
+
+Parallel Testing
+Simulate different services or microservices (e.g., one on 8080, another on 8081).
+
+Load Simulation
+See how your client handles multiple servers or fallback behavior.
+
+Multi-environment Setup
+Use different ports for staging, testing, or different endpoints.
+
+Isolation
+Each server can behave differently (e.g., one returns success, another returns error).
+
+
+
+
 ```
 **Please push the code back to Github to submit this lab**
 After you push, ensure you have green checkmark on the repository.
